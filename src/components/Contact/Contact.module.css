@@ -1,0 +1,20 @@
+.contact {
+    margin-bottom: 10px;
+  }
+  
+  .deleteButton {
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #f9e8c4;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin-left: 15px;
+  }
+
+  .deleteButton:hover {
+    background-color: #d2600e;
+    color: white;
+  }

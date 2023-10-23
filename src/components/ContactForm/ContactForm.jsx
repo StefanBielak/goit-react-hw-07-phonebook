@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './ContactForm.module.css'
 
 const ContactForm = ({ addContact }) => {
   const [name, setName] = useState('');
@@ -12,8 +13,10 @@ const ContactForm = ({ addContact }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <div className={styles.label}>Name</div>
       <input
+        className={styles.input}
         type="text"
         name="name"
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -22,7 +25,9 @@ const ContactForm = ({ addContact }) => {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
+      <div className={styles.label}>Phone number</div>
       <input
+        className={styles.input}
         type="tel"
         name="number"
         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -31,7 +36,9 @@ const ContactForm = ({ addContact }) => {
         value={number}
         onChange={(e) => setNumber(e.target.value)}
       />
-      <button type="submit">Add Contact</button>
+      <button className={styles.button} type="submit">
+        Add Contact
+      </button>
     </form>
   );
 };

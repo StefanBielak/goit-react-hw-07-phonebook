@@ -1,8 +1,10 @@
 import React from 'react';
+import styles from './Filter.module.css';
 
 const Filter = ({ value, onChange }) => {
   return (
     <input
+      className={styles.filterInput}
       type="text"
       placeholder="Search contacts..."
       value={value}
@@ -10,4 +12,5 @@ const Filter = ({ value, onChange }) => {
     />
   );
 };
+
 export default Filter;

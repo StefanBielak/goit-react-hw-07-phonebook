@@ -1,0 +1,10 @@
+.filterInput {
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    font-size: 16px;
+    border: 4px solid #d2600e;
+    border-radius: 5px;
+  }
