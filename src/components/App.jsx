@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
-import styles from './App.module.css'
+import styles from './App.module.css';
 
 export const App = () => {
   const [contacts, setContacts] = useState(() => {
@@ -15,6 +15,7 @@ export const App = () => {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ];
   });
+
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
@@ -34,15 +35,20 @@ export const App = () => {
     setContacts(contacts.filter((contact) => contact.id !== id));
   };
 
+  const handleFilterChange = (event) => {
+    setFilter(event.target.value);
+  };
+
   const filteredContacts = contacts.filter((contact) =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Phonebook</h1>
       <ContactForm addContact={addContact} />
       <h2 className={styles.title}>Contacts</h2>
-      <Filter value={filter} onChange={setFilter} />
+      <Filter value={filter} onChange={handleFilterChange} />
       <ContactList contacts={filteredContacts} onDelete={deleteContact} />
     </div>
   );
