@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact, deleteContact } from './actions';
-import { setFilter } from './actions';
+import { updateFilter } from './actions';
 import ContactForm from '#components/ContactForm/ContactForm';
 import ContactList from '#components/ContactList/ContactList';
 import Filter from '#components/Filter/Filter';
@@ -13,24 +13,20 @@ const App = () => {
   const filter = useSelector((state) => state.filter);
 
   useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
+    try {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+    } catch (error) {
+      console.error('Error saving to local storage:', error);
+    }
   }, [contacts]);
-
-  const handleFilterChange = (event) => {
-    dispatch(setFilter(event.target.value));
-  };
-
-  const filteredContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Phonebook</h1>
       <ContactForm addContact={(contact) => dispatch(addContact(contact))} />
       <h2 className={styles.title}>Contacts</h2>
-      <Filter value={filter} onChange={handleFilterChange} />
-      <ContactList contacts={filteredContacts} onDelete={(id) => dispatch(deleteContact(id))} />
+      <Filter value={filter} onChange={(event) => dispatch(updateFilter(event?.target?.value || ''))} />
+      <ContactList contacts={contacts} onDelete={(id) => dispatch(deleteContact(id))} />
     </div>
   );
 };
