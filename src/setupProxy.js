@@ -4,7 +4,7 @@ module.exports = function (app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'https://mockapi.io/clone/656df9fcbcc5618d3c2457df',
+      target: 'https://mockapi.io/clone/656dfcf7bcc5618d3c245cca',
       changeOrigin: true,
     })
   );
